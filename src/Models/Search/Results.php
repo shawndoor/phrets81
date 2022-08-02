@@ -10,6 +10,7 @@ use SplTempFileObject;
 
 class Results implements Countable, ArrayAccess, IteratorAggregate
 {
+    
     protected $resource;
     protected $class;
     /** @var \PHRETS\Session */
@@ -247,8 +248,10 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
         return $this;
     }
 
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
+        
         return $this->results->getIterator();
     }
 
@@ -256,7 +259,7 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
      * @param mixed $offset
      * @return bool
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset) : bool
     {
         return $this->results->offsetExists($offset);
     }
@@ -265,7 +268,7 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
      * @param mixed $offset
      * @return Record|null
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset) : mixed
     {
         return $this->results->offsetGet($offset);
     }
@@ -274,7 +277,7 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
      * @param mixed $offset
      * @param mixed $value
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value) : void
     {
         if ($offset) {
             $this->addRecord($value, function () use ($offset) { return $offset; });
@@ -286,7 +289,7 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
     /**
      * @param mixed $offset
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset) : void
     {
         $this->results->offsetUnset($offset);
     }
@@ -294,7 +297,7 @@ class Results implements Countable, ArrayAccess, IteratorAggregate
     /**
      * @return int
      */
-    public function count()
+    public function count() : int
     {
         return $this->results->count();
     }
