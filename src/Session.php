@@ -585,7 +585,8 @@ class Session
                 'Accept-Encoding' => 'gzip',
                 'Accept' => '*/*',
             ],
-            'curl' => [ CURLOPT_COOKIEFILE => tempnam('/tmp', 'phrets') ]
+            // 'curl' => [ CURLOPT_COOKIEFILE => tempnam('/tmp', 'phrets') ]
+            'curl' => [ CURLOPT_COOKIEFILE => '' ]
         ];
 
         // disable following 'Location' header (redirects) automatically
